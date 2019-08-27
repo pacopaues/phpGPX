@@ -125,6 +125,7 @@ class Track extends Collection
 			$this->stats->cumulativeElevationLoss += $this->segments[$s]->stats->cumulativeElevationLoss;
 
 			$this->stats->distance += $this->segments[$s]->stats->distance;
+			$this->stats->pause += $this->segments[$s]->stats->pause;
 
 			if ($this->stats->minAltitude === null) {
 				$this->stats->minAltitude = $this->segments[$s]->stats->minAltitude;

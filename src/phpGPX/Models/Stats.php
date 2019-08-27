@@ -77,6 +77,12 @@ class Stats implements Summarizable
 	public $duration = null;
 
 	/**
+	 * Pause in seconds
+	 * @var int
+	 */
+	public $pause = 0;
+
+	/**
 	 * Reset all stats
 	 */
 	public function reset()
@@ -90,6 +96,7 @@ class Stats implements Summarizable
 		$this->cumulativeElevationLoss = null;
 		$this->startedAt = null;
 		$this->finishedAt = null;
+		$this->pause = null;
 	}
 
 	/**
@@ -108,7 +115,8 @@ class Stats implements Summarizable
 			'cumulativeElevationLoss' => (float)$this->cumulativeElevationLoss,
 			'startedAt' => DateTimeHelper::formatDateTime($this->startedAt, phpGPX::$DATETIME_FORMAT, phpGPX::$DATETIME_TIMEZONE_OUTPUT),
 			'finishedAt' => DateTimeHelper::formatDateTime($this->finishedAt, phpGPX::$DATETIME_FORMAT, phpGPX::$DATETIME_TIMEZONE_OUTPUT),
-			'duration' => (float)$this->duration
+			'duration' => (float)$this->duration,
+			'pause' => (float)$this->pause
 		];
 	}
 }

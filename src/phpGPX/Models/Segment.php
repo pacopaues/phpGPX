@@ -7,6 +7,7 @@
 namespace phpGPX\Models;
 
 use phpGPX\Helpers\DistanceCalculator;
+use phpGPX\Helpers\PauseCalculator;
 use phpGPX\Helpers\ElevationGainLossCalculator;
 use phpGPX\Helpers\GeoHelper;
 use phpGPX\Helpers\SerializationHelper;
@@ -98,6 +99,7 @@ class Segment implements Summarizable, StatsCalculator
 			ElevationGainLossCalculator::calculate($this->getPoints());
 
 		$this->stats->distance = DistanceCalculator::calculate($this->getPoints());
+		$this->stats->pause = PauseCalculator::calculate($this->getPoints());
 
 		for ($i = 0; $i < $count; $i++) {
 			if ($this->stats->maxAltitude < $this->points[$i]->elevation) {

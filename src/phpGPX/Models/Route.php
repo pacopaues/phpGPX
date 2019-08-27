@@ -7,6 +7,7 @@
 namespace phpGPX\Models;
 
 use phpGPX\Helpers\DistanceCalculator;
+use phpGPX\Helpers\PauseCalculator;
 use phpGPX\Helpers\ElevationGainLossCalculator;
 use phpGPX\Helpers\GeoHelper;
 use phpGPX\Helpers\SerializationHelper;
@@ -103,6 +104,7 @@ class Route extends Collection
 			ElevationGainLossCalculator::calculate($this->getPoints());
 
 		$this->stats->distance = DistanceCalculator::calculate($this->getPoints());
+		$this->stats->pause = PauseCalculator::calculate($this->getPoints());
 
 		for ($p = 0; $p < $pointCount; $p++) {
 			if ((phpGPX::$IGNORE_ELEVATION_0 === false || $this->points[$p]->elevation > 0) && $this->stats->minAltitude > $this->points[$p]->elevation) {
